@@ -6,7 +6,7 @@ const SearchComp: React.FC = () => {
   return (
     <View style={ styles.container}>
         <IconHolder style={styles.iconHStyle} source={require('@/assets/Icons/searchIcob.png')}/>
-        <TextInput style={{fontSize:20}} placeholder='Search'/>
+        <TextInput style={{fontSize:16}} placeholder='Search'/>
     </View>
   )
 }
@@ -19,7 +19,7 @@ const styles= StyleSheet.create({
     },
     container:{
         width:"100%",
-        height:50,
+        height:40,
         backgroundColor:"#ff92041a",
         display:"flex",
         flexDirection:'row',

@@ -7,6 +7,7 @@ import cartIcon from "@/assets/Icons/cartUnfoIcon.png";
 import profileIcon from "@/assets/Icons/profileIcon.png";
 import IconHolder from '@/components/IconHolder';
 import SearchComp from '@/components/SearchComp';
+import DiscountCard from '@/components/dataComponents/DiscountCard';
 
 const HomePage = () => {
   return (
@@ -26,6 +27,8 @@ const HomePage = () => {
           </View>
         </View>
         <SearchComp/>
+        <DiscountCard mealName='Denzel GG' mealDescr="Delicious Fast Food Meal With Burgers Fries And Coke " price='30% OFF' image={require("@/assets/food/burdersWithDrink.png")}/>
+        <TextComp>Populer meals</TextComp>
     </BackgroundComp>
   )
 }

@@ -9,8 +9,8 @@ interface TheProps{
 
 const IconHolder: React.FC<TheProps> = ({style, styleIc, source}) => {
   return (
-    <View style={[style, styles.boxStyle]}>
-        <Image source={source} style={[styleIc, ]}/>
+    <View style={[styles.boxStyle, style,]}>
+        <Image source={source} style={[ styles.imgStyle ,styleIc]}/>
     </View>
   )
 }
