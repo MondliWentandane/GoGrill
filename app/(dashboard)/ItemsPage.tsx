@@ -1,13 +1,58 @@
 import BackgroundComp from '@/components/BackgroundComp'
+import CategoriesComp from '@/components/CategoriesComp'
+import PopulerMealsCard from '@/components/dataComponents/PopulerMealsCard'
+import IconHolder from '@/components/IconHolder'
+import SearchComp from '@/components/SearchComp'
 import TextComp from '@/components/TextComp'
 import React from 'react'
+import { ScrollView, StyleSheet, View } from 'react-native'
 
 const ItemsPage: React.FC = () => {
   return (
-    <BackgroundComp>
-        <TextComp>Hello iTEMS</TextComp>
+    <BackgroundComp style={{paddingTop:5}}>
+        <SearchComp/>
+        <TextComp>Categories</TextComp>
+        <View style={styles.tabsHo}>
+          <CategoriesComp catName='Food' iconURL={require("@/assets/Icons/fastfoodIcon.png")}/>
+          <CategoriesComp catName='Drinks' iconURL={require("@/assets/Icons/drinkIcon.png")}/>
+          <CategoriesComp catName='Salad' iconURL={require("@/assets/Icons/saladIcon.png")}/>
+          <CategoriesComp catName='Snack' iconURL={require("@/assets/Icons/snakIcon.png")}/>
+        </View>
+        <View style={styles.itemsHolder}>
+          <ScrollView>
+            
+          </ScrollView>
+        </View>
     </BackgroundComp>
   )
 }
 
-export default ItemsPage
+export default ItemsPage;
+
+const styles= StyleSheet.create({
+  tabsHo:{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-between",
+    width:"100%",
+    height:"9%"
+  },
+  sectDiv:{
+    display:"flex",
+    flexDirection:"column",
+    backgroundColor:"#33e382",
+    alignItems:"center"
+  },
+  icon:{
+    width:"80%",
+    height:"80%",
+    backgroundColor:"#f7990c",
+    borderRadius:10
+  },
+  itemsHolder:{
+    backgroundColor:"#e333cb",
+    width:"100%",
+    height:"76%",
+    marginTop:15
+  }
+})
