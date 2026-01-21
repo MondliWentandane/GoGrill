@@ -1,13 +1,14 @@
 import BackgroundComp from '@/components/BackgroundComp'
 import TextComp from '@/components/TextComp'
 import React from 'react'
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, View } from 'react-native';
 import locationIcon from '@/assets/Icons/locationIconWHITE.png';
 import cartIcon from "@/assets/Icons/cartUnfoIcon.png";
 import profileIcon from "@/assets/Icons/profileIcon.png";
 import IconHolder from '@/components/IconHolder';
 import SearchComp from '@/components/SearchComp';
 import DiscountCard from '@/components/dataComponents/DiscountCard';
+import PopulerMealsCard from '@/components/dataComponents/PopulerMealsCard';
 
 const HomePage = () => {
   return (
@@ -27,8 +28,31 @@ const HomePage = () => {
           </View>
         </View>
         <SearchComp/>
-        <DiscountCard mealName='Denzel GG' mealDescr="Delicious Fast Food Meal With Burgers Fries And Coke " price='30% OFF' image={require("@/assets/food/burdersWithDrink.png")}/>
+          <View style={{ height:"21.3%",}}>
+            <ScrollView horizontal={true} style={{height:20,}} contentContainerStyle={{alignItems:"center"}}>
+            <DiscountCard mealName='Denzel GG' mealDescr="Delicious Fast Food Meal With Burgers Fries And Coke " 
+                      price={30} image={require("@/assets/food/burdersWithDrink.png")}/> 
+            <DiscountCard mealName='Denzel GG' mealDescr="Delicious Fast Food Meal With Burgers Fries And Coke " 
+                      price={30} image={require("@/assets/food/burdersWithDrink.png")}/>         
+            <DiscountCard mealName='Denzel GG' mealDescr="Delicious Fast Food Meal With Burgers Fries And Coke " 
+                      price={30} image={require("@/assets/food/burdersWithDrink.png")}/>                    
+                      
+          </ScrollView>
+          </View>
         <TextComp>Populer meals</TextComp>
+        <View style={{width:"100%", height:"58%"}}>
+          <ScrollView>
+            <PopulerMealsCard theImage={require("@/assets/food/Stir-FryedSalad.png")} name='Stir- Fry Soludan' 
+                              descr='Red Bury with fried potato, columane with stake grilled Viniger' 
+                              time={23} price={89.99}/>
+            <PopulerMealsCard theImage={require("@/assets/food/Stir-FryedSalad.png")} name='Stir- Fry Soludan' 
+                              descr='Red Bury with fried potato, columane with stake grilled Viniger' 
+                              time={23} price={89.99}/>
+            <PopulerMealsCard theImage={require("@/assets/food/Stir-FryedSalad.png")} name='Stir- Fry Soludan' 
+                              descr='Red Bury with fried potato, columane with stake grilled Viniger' 
+                              time={23} price={89.99}/>                                                                                     
+          </ScrollView>
+        </View>
     </BackgroundComp>
   )
 }
@@ -56,6 +80,6 @@ const styles = StyleSheet.create({
     flexDirection:"row",
     height:"100%",
     width:"25%",
-    gap:"9%"
+    gap:"9%" 
   }
 })
