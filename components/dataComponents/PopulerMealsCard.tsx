@@ -17,20 +17,21 @@ const PopulerMealsCard: React.FC<TheProps> = ({theImage, name, descr, time, pric
         <Image style={styles.imgStyle} source={theImage}/>
         <View style={styles.bottomSect}>
             <View style={{paddingTop:"1%", paddingLeft:"1%",}}>
-                <TextComp style={{fontSize:20, color:"#ffffff", lineHeight:14}}>{name}</TextComp>
-                <TextComp style={{fontSize:13, color:"#ffffff", width:"70%"}}>{descr}</TextComp>
+                <TextComp style={{fontSize:20, color:"#f87204", lineHeight:14}}>{name}</TextComp>
+                <TextComp style={{fontSize:13, color:"#000000", width:"70%"}}>{descr}</TextComp>
             </View>
             <View style={styles.iconsSect}>
-                <IconHolder styleIc={{height:"80%", width:"80%"}} style={styles.iconHo} 
-                            source={require("@/assets/Icons/cartAddIcon.png")}/>
+                <TextComp style={{fontSize:20, color:"#000000",lineHeight:14, alignSelf:"center"}}>R{price}</TextComp>
                 <View style={{display:"flex", flexDirection:"row", gap:"3%"}}>
                     <IconHolder styleIc={{height:"80%", width:"80%"}} style={styles.iconHo} 
-                            source={require("@/assets/Icons/scheduleIcon.png")}/>                    
-                    <TextComp style={{fontSize:16, color:"#ffffff", lineHeight:14,  alignSelf:"center"}}>
+                            source={require("@/assets/Icons/scheduleBlackIcon.png")}/>                    
+                    <TextComp style={{fontSize:16, color:"#000000", lineHeight:14,  alignSelf:"center"}}>
                         {time}min
                     </TextComp>
                 </View>
-                <TextComp style={{fontSize:20, color:"#ffffff", lineHeight:14, alignSelf:"center"}}>R{price}</TextComp>
+                <IconHolder styleIc={{height:"80%", width:"80%"}} style={styles.iconHo} 
+                            source={require("@/assets/Icons/cartAddBlackIcon.png")}/>
+                
             </View>
         </View>
     </View>
@@ -43,9 +44,11 @@ const styles= StyleSheet.create({
     card:{
         width:"100%",
         height:220,
-        backgroundColor:"#f87204",
+        backgroundColor:"#EAEBF0",
         borderRadius:20,
-        marginBottom:"2%"
+        marginBottom:"2%",
+        borderColor:"#000000",
+        borderWidth:0.1
     },
     imgStyle:{
         width:"100%",
@@ -56,6 +59,7 @@ const styles= StyleSheet.create({
     bottomSect:{
         justifyContent:"space-between",
         height:"45%",
+        paddingTop:"2%"
     },
     iconsSect:{
         paddingLeft:"2%",
@@ -67,8 +71,6 @@ const styles= StyleSheet.create({
         justifyContent:"space-between"
     },
     iconHo:{
-        borderColor:"#ffffff", 
-        borderWidth:1, 
         borderRadius:5, 
         height:28, 
         width:29

@@ -1,7 +1,6 @@
 import BackgroundComp from '@/components/BackgroundComp'
 import CategoriesComp from '@/components/CategoriesComp'
-import PopulerMealsCard from '@/components/dataComponents/PopulerMealsCard'
-import IconHolder from '@/components/IconHolder'
+import MealCard from '@/components/dataComponents/MealCard'
 import SearchComp from '@/components/SearchComp'
 import TextComp from '@/components/TextComp'
 import React from 'react'
@@ -19,8 +18,25 @@ const ItemsPage: React.FC = () => {
           <CategoriesComp catName='Snack' iconURL={require("@/assets/Icons/snakIcon.png")}/>
         </View>
         <View style={styles.itemsHolder}>
-          <ScrollView>
-            
+          <ScrollView style={{}}>
+            <MealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
+                       style={{}} image={require("@/assets/food/burger.png")}/>
+            <MealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
+                       style={{}} image={require("@/assets/food/burger.png")}/>
+            <MealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
+                       style={{}} image={require("@/assets/food/burger.png")}/>
+            <MealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
+                       style={{}} image={require("@/assets/food/burger.png")}/>
+            <MealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
+                       style={{}} image={require("@/assets/food/burger.png")}/> 
+            <MealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
+                       style={{}} image={require("@/assets/food/burger.png")}/>
+            <MealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
+                       style={{}} image={require("@/assets/food/burger.png")}/>
+            <MealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
+                       style={{}} image={require("@/assets/food/burger.png")}/>
+            <MealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
+                       style={{}} image={require("@/assets/food/burger.png")}/>                                                                                       
           </ScrollView>
         </View>
     </BackgroundComp>
@@ -35,7 +51,9 @@ const styles= StyleSheet.create({
     flexDirection:"row",
     justifyContent:"space-between",
     width:"100%",
-    height:"9%"
+    height:"9%",
+    paddingLeft:"7%",
+    paddingRight:"7%"
   },
   sectDiv:{
     display:"flex",
@@ -50,9 +68,9 @@ const styles= StyleSheet.create({
     borderRadius:10
   },
   itemsHolder:{
-    backgroundColor:"#e333cb",
     width:"100%",
     height:"76%",
     marginTop:15
-  }
+  },
+  
 })
