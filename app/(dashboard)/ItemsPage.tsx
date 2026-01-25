@@ -36,7 +36,9 @@ const ItemsPage: React.FC = () => {
             <MealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
                        style={{}} image={require("@/assets/food/burger.png")}/>
             <MealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
-                       style={{}} image={require("@/assets/food/burger.png")}/>                                                                                       
+                       style={{}} image={require("@/assets/food/burger.png")}/>   
+
+                                                                                                          
           </ScrollView>
         </View>
     </BackgroundComp>
@@ -72,5 +74,6 @@ const styles= StyleSheet.create({
     height:"76%",
     marginTop:15
   },
+  
   
 })

@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     itemCard:{
     width:"100%",
     height:110,
-    backgroundColor:"#ff92040e",
+    backgroundColor:"#EAEBF0",
     borderRadius:20,
     marginBottom:"2%",
     display:"flex",

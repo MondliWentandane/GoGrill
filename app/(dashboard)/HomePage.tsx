@@ -45,7 +45,7 @@ const HomePage = () => {
             <PopulerMealsCard theImage={require("@/assets/food/Stir-FryedSalad.png")} name='Stir- Fry Soludan' 
                               descr='Red Bury with fried potato, columane with stake grilled Viniger' 
                               time={23} price={89.99}/>
-            <PopulerMealsCard theImage={require("@/assets/food/Stir-FryedSalad.png")} name='Stir- Fry Soludan' 
+            <PopulerMealsCard theImage={require("@/assets/food/burdersWithDrink.png")} name='Stir- Fry Soludan' 
                               descr='Red Bury with fried potato, columane with stake grilled Viniger' 
                               time={23} price={89.99}/>
             <PopulerMealsCard theImage={require("@/assets/food/Stir-FryedSalad.png")} name='Stir- Fry Soludan' 

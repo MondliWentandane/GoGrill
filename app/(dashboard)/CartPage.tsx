@@ -1,8 +1,10 @@
 import BackgroundComp from '@/components/BackgroundComp'
 import CategoriesComp from '@/components/CategoriesComp'
 import CartMealCard from '@/components/dataComponents/CartMealCard'
+import CheckoutCard from '@/components/dataComponents/CheckoutCard'
 import IconHolder from '@/components/IconHolder'
 import TextComp from '@/components/TextComp'
+import { router } from 'expo-router'
 import React from 'react'
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native'
 
@@ -34,10 +36,11 @@ const CartPage: React.FC = () => {
             <CartMealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
                        style={{}} image={require("@/assets/food/burger.png")}/>
             <CartMealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
-                       style={{}} image={require("@/assets/food/Stir-FryedSalad.png")}/>                                                                  
+                       style={{}} image={require("@/assets/food/Stir-FryedSalad.png")}/>        
+                                                                                 
           </ScrollView>
-        </View>
-                  
+        </View> 
+        <CheckoutCard/>          
     </BackgroundComp>
   )
 }
@@ -61,7 +64,10 @@ const styles = StyleSheet.create({
   },
   itemsHolder:{
     width:"100%",
-    height:"83%",
+    height:"74%",
     marginTop:15,
+    borderBottomWidth:2,
+    borderColor:"#00000033",
+    marginBottom:9
   },
 })
