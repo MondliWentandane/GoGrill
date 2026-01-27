@@ -6,13 +6,17 @@ interface InputProps extends TextInputProps{
     style?: StyleProp<TextStyle>;
     styleL?: TextStyle | TextStyle[];
     thePlaceholder?: string;
+    value?:string;
+    onChangeText?: (text:string)=>void;
+    secureTextEntry?: boolean;
 }
 
-const InputComp: React.FC<InputProps> = ({label, thePlaceholder, style, styleL}) => {
+const InputComp: React.FC<InputProps> = ({label, thePlaceholder, style, styleL,value, onChangeText, secureTextEntry = false, ...props}) => {
   return (
     <View style={{width:"100%", height:40}}>
         <Text style={[styleL, styles.lblStyle]}>{label}</Text>
-        <TextInput style={[style, styles.theStyle]} placeholder={thePlaceholder}/>
+        <TextInput value={value} onChangeText={onChangeText} secureTextEntry={secureTextEntry} 
+                   style={[style, styles.theStyle]} placeholder={thePlaceholder} {...props}/>
     </View>
   )
 }
