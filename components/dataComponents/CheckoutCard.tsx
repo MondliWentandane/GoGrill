@@ -24,22 +24,21 @@ const CheckoutCard: React.FC<CheckoutCardProps> = ({ totalAmount, onCheckout }) 
 export default CheckoutCard;
 
 const styles = StyleSheet.create({
-  checkoutBtn: {
-    width: "95%",
+  checkoutBtn:{
+    width:"95%",
     height: 45,
-    backgroundColor: "#EAEBF0",
-    borderRadius: 10,
-    alignSelf: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 20,
+    backgroundColor:"#EAEBF0",
+    borderRadius:10,
+    alignSelf:"center",
+    alignItems:"center",
+    justifyContent:"center",
+    display:"flex",
+    flexDirection:"row"
   },
-  btnCheck: {
-    padding: "1%",
-    backgroundColor: "#060606",
-    borderRadius: 5,
-    marginLeft: "19%"
+  btnCheck:{
+    padding:"1%",
+    backgroundColor:"#060606",
+    borderRadius:5,
+    marginLeft:"19%"
   }
 })

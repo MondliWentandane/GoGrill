@@ -1,78 +1,144 @@
 import React from 'react'
-import { Image, ImageSourcePropType, StyleSheet, View } from 'react-native';
+import { Image, ImageSourcePropType, Pressable, StyleSheet, View } from 'react-native';
 import TextComp from '../TextComp';
 import IconHolder from '../IconHolder';
 
-interface TheProps{
-    theImage: ImageSourcePropType;
-    name: string;
-    descr: string;
-    time: number;
-    price: number;
+interface TheProps {
+  theImage: ImageSourcePropType;
+  name: string;
+  descr: string;
+  time: number;
+  price: number;
+  onAddToCart?: () => void;
 }
 
-const PopulerMealsCard: React.FC<TheProps> = ({theImage, name, descr, time, price}) => {
+const PopulerMealsCard: React.FC<TheProps> = ({ 
+  theImage, 
+  name, 
+  descr, 
+  time, 
+  price,
+  onAddToCart 
+}) => {
   return (
     <View style={styles.card}>
-        <Image style={styles.imgStyle} source={theImage}/>
-        <View style={styles.bottomSect}>
-            <View style={{paddingTop:"1%", paddingLeft:"1%",}}>
-                <TextComp style={{fontSize:20, color:"#f87204", lineHeight:14}}>{name}</TextComp>
-                <TextComp style={{fontSize:13, color:"#000000", width:"70%"}}>{descr}</TextComp>
-            </View>
-            <View style={styles.iconsSect}>
-                <TextComp style={{fontSize:20, color:"#000000",lineHeight:14, alignSelf:"center"}}>R{price}</TextComp>
-                <View style={{display:"flex", flexDirection:"row", gap:"3%"}}>
-                    <IconHolder styleIc={{height:"80%", width:"80%"}} style={styles.iconHo} 
-                            source={require("@/assets/Icons/scheduleBlackIcon.png")}/>                    
-                    <TextComp style={{fontSize:16, color:"#000000", lineHeight:14,  alignSelf:"center"}}>
-                        {time}min
-                    </TextComp>
-                </View>
-                <IconHolder styleIc={{height:"80%", width:"80%"}} style={styles.iconHo} 
-                            source={require("@/assets/Icons/cartAddBlackIcon.png")}/>
-                
-            </View>
+      <Image style={styles.imgStyle} source={theImage} resizeMode="cover" />
+      <View style={styles.bottomSect}>
+        <View style={styles.textContainer}>
+          <TextComp style={styles.mealName}>{name}</TextComp>
+          <TextComp style={styles.mealDescription} numberOfLines={2}>
+            {descr}
+          </TextComp>
         </View>
+        <View style={styles.iconsSect}>
+          <TextComp style={styles.priceText}>R{price.toFixed(2)}</TextComp>
+          <View style={styles.timeContainer}>
+            <IconHolder 
+              styleIc={styles.timeIcon}
+              style={styles.timeIconHolder} 
+              source={require("@/assets/Icons/scheduleBlackIcon.png")}
+            />                    
+            <TextComp style={styles.timeText}>
+              {time}min
+            </TextComp>
+          </View>
+          <Pressable onPress={onAddToCart}>
+            <IconHolder 
+              styleIc={styles.cartIcon}
+              style={styles.cartIconHolder} 
+              source={require("@/assets/Icons/cartAddBlackIcon.png")}
+            />
+          </Pressable>
+        </View>
+      </View>
     </View>
   )
 }
 
 export default PopulerMealsCard;
 
-const styles= StyleSheet.create({
-    card:{
-        width:"100%",
-        height:220,
-        backgroundColor:"#EAEBF0",
-        borderRadius:20,
-        marginBottom:"2%",
-        borderColor:"#000000",
-        borderWidth:0.1
-    },
-    imgStyle:{
-        width:"100%",
-        height:"55%",
-        borderTopLeftRadius:20,
-        borderTopRightRadius:20,
-    },
-    bottomSect:{
-        justifyContent:"space-between",
-        height:"45%",
-        paddingTop:"2%"
-    },
-    iconsSect:{
-        paddingLeft:"2%",
-        paddingRight:"2%",
-        height:"34%",
-        width:"100%",
-        display:"flex",
-        flexDirection:"row",
-        justifyContent:"space-between"
-    },
-    iconHo:{
-        borderRadius:5, 
-        height:28, 
-        width:29
-    }
-})
+const styles = StyleSheet.create({
+  card: {
+    width: "100%",
+    height: 200,
+    backgroundColor: "#EAEBF0",
+    borderRadius: 20,
+    marginBottom: 10,
+    borderColor: "#000000",
+    borderWidth: 0.1,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
+    overflow: 'hidden',
+  },
+  imgStyle: {
+    width: "100%",
+    height: "55%",
+  },
+  bottomSect: {
+    height:"43%",
+    paddingHorizontal: 9,
+    justifyContent: 'space-between',
+    paddingTop:4
+  },
+  textContainer: {
+    flex: 1,
+  },
+  mealName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: "#f87204",
+    lineHeight: 22,
+    marginBottom: 6,
+  },
+  mealDescription: {
+    fontSize: 13,
+    color: "#000000",
+    lineHeight: 16,
+  },
+  iconsSect: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  priceText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: "#000000",
+  },
+  timeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  timeIconHolder: {
+    width: 30,
+    height: 30,
+    backgroundColor: '#fff',
+    borderRadius: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  timeIcon: {
+    width: 18,
+    height: 18,
+  },
+  timeText: {
+    fontSize: 16,
+    color: "#000000",
+  },
+  cartIconHolder: {
+    width: 40,
+    height: 40,
+    backgroundColor: '#ff9a03',
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cartIcon: {
+    width: 22,
+    height: 22,
+  },
+});

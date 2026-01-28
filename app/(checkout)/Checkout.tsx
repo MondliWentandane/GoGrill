@@ -4,42 +4,102 @@ import CartMealCard from '@/components/dataComponents/CartMealCard';
 import CheckoutLastCard from '@/components/dataComponents/CheckoutLastCard';
 import TextComp from '@/components/TextComp';
 import { router } from 'expo-router';
-import React from 'react'
+import React, { useState } from 'react'
 import { Image, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { updateCartItemLocal, removeFromCart, setDeliveryType } from '@/store/slices/cartSlice';
+import { createOrder } from '@/store/slices/ordersSlice';
 
 const Checkout = () => {
+  const dispatch = useAppDispatch();
+  const { items, totalAmount, deliveryAddress, deliveryType } = useAppSelector((state) => state.cart);
+  const [selectedOption, setSelectedOption] = useState<'Collect' | 'Delivery'>(deliveryType === 'pickup' ? 'Collect' : 'Delivery');
+
+  // Handle quantity changes
+  const handleQuantityChange = (itemId: string, change: number) => {
+    const item = items.find((item: any) => item.id === itemId);
+    if (item) {
+      const newQuantity = item.quantity + change;
+      if (newQuantity > 0) {
+        dispatch(updateCartItemLocal({ itemId, quantity: newQuantity }));
+      } else {
+        dispatch(removeFromCart(itemId));
+      }
+    }
+  };
+
+  // Handle delivery type change
+  const handleDeliveryTypeChange = (type: 'Collect' | 'Delivery') => {
+    setSelectedOption(type);
+    dispatch(setDeliveryType(type === 'Collect' ? 'pickup' : 'delivery'));
+  };
+
+  // Handle buy now
+  const handleBuyNow = async () => {
+    try {
+      await dispatch(createOrder({
+        items,
+        totalAmount,
+        deliveryAddress,
+        deliveryType: selectedOption === 'Collect' ? 'pickup' : 'delivery',
+        paymentMethod: 'card', // Default to card, can make selectable
+      })).unwrap();
+      
+      router.replace('/(dashboard)/HomePage');
+      // Show success message
+      alert('Order placed successfully!');
+    } catch (error) {
+      alert('Failed to place order. Please try again.');
+    }
+  };
+
   return (
     <BackgroundComp style={{ paddingTop:"1%"}}>
         <View style={styles.tabsHolder}>
-            <CategoriesComp catName='Collect' iconURL={require("@/assets/Icons/storeIcon.png")}/>
-            <CategoriesComp catName='Delivery' iconURL={require("@/assets/Icons/deliveryIcon.png")}/>
+            <CategoriesComp 
+              catName='Collect' 
+              iconURL={require("@/assets/Icons/storeIcon.png")}
+              isSelected={selectedOption === 'Collect'}
+              onPress={() => handleDeliveryTypeChange('Collect')}
+            />
+            <CategoriesComp 
+              catName='Delivery' 
+              iconURL={require("@/assets/Icons/deliveryIcon.png")}
+              isSelected={selectedOption === 'Delivery'}
+              onPress={() => handleDeliveryTypeChange('Delivery')}
+            />
         </View>
         <View style={styles.itemsHolder}>
           <ScrollView style={{}}>
-            <CartMealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
-                       style={{}} image={require("@/assets/food/burger.png")}/>
-            <CartMealCard name='Chicken Listern' description='BurgerKing with fried chips Hot like source' price={26.99}
-                       style={{}} image={require("@/assets/food/chicken.png")}/>
-            <CartMealCard name='The Leder Crush' description='BurgerKing with fried chips Hot like source' price={49.99}
-                       style={{}} image={require("@/assets/food/crush.png")}/>
-            <CartMealCard name='Unwise Street' description='Chilly Burger' price={31.99}
-                       style={{}} image={require("@/assets/food/unWise.png")}/>
-            <CartMealCard name='Cruncher Sand' description='Sandwitch chilly PiePoolit' price={19.99}
-                       style={{}} image={require("@/assets/food/sand.png")}/>
-            <CartMealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
-                       style={{}} image={require("@/assets/food/burger.png")}/>
-            <CartMealCard name='StreetWise' description='BurgerKing with fried chips Hot like source' price={76.99}
-                       style={{}} image={require("@/assets/food/Stir-FryedSalad.png")}/>        
-                                                                                 
+            {items.map((item: any) => (
+              <CartMealCard
+                key={item.id}
+                name={item.mealName}
+                description={item.mealDescription}
+                price={item.mealPrice}
+                image={item.mealImage}
+                style={{}}
+                itemId={item.id}
+                quantity={item.quantity}
+                onQuantityIncrease={() => handleQuantityChange(item.id, 1)}
+                onQuantityDecrease={() => handleQuantityChange(item.id, -1)}
+                onRemove={() => dispatch(removeFromCart(item.id))}
+              />
+            ))}
           </ScrollView>
         </View>
-        <CheckoutLastCard/>
+        <CheckoutLastCard totalAmount={totalAmount} />
         <View style={styles.btnsHolder}>
-            <Pressable onPress={()=>{router.push("/(dashboard)/CartPage")}}
-              style={{padding:"2%", backgroundColor:"#ff92041a", borderRadius:5, width:130, alignItems:"center"}}>
-                <TextComp style={{fontSize:19,}}>Cancel</TextComp>
+            <Pressable 
+              onPress={() => router.push("/(dashboard)/CartPage")}
+              style={{padding:"2%", backgroundColor:"#ff92041a", borderRadius:5, width:130, alignItems:"center"}}
+            >
+                <TextComp style={{fontSize:19}}>Cancel</TextComp>
             </Pressable>
-            <Pressable style={{padding:"2%", backgroundColor:"#ff8e04", borderRadius:5, width:130, alignItems:"center"}}>
+            <Pressable 
+              onPress={handleBuyNow}
+              style={{padding:"2%", backgroundColor:"#ff8e04", borderRadius:5, width:130, alignItems:"center"}}
+            >
                 <TextComp style={{fontSize:19, color:"#ffffff"}}>Buy Now</TextComp>
             </Pressable>
         </View>
@@ -61,20 +121,20 @@ const styles= StyleSheet.create({
         marginTop:"1%"
     },
     itemsHolder:{
-    width:"100%",
-    height:"69%",
-    marginTop:15,
-    borderBottomWidth:2,
-    borderColor:"#00000033",
-    marginBottom:9
-  },
-  btnsHolder:{
-    display:"flex",
-    flexDirection:"row",
-    alignItems:"center",
-    justifyContent:"space-between",
-    width:"90%",
-    alignSelf:"center",
-    marginTop:"3%"
-  }
+      width:"100%",
+      height:"69%",
+      marginTop:15,
+      borderBottomWidth:2,
+      borderColor:"#00000033",
+      marginBottom:9
+    },
+    btnsHolder:{
+      display:"flex",
+      flexDirection:"row",
+      alignItems:"center",
+      justifyContent:"space-between",
+      width:"90%",
+      alignSelf:"center",
+      marginTop:"3%"
+    }
 })
