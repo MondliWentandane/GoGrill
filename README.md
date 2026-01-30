@@ -15,6 +15,8 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    ```bash
    npx expo start
    ```
+===== Bellow is the Link to the Dashboard Repo =======
+Link: https://github.com/MondliWentandane/GoGrillDashboard.git
 
 In the output, you'll find options to open the app in a
 
