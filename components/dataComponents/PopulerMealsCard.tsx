@@ -1,10 +1,11 @@
+// components/dataComponents/PopulerMealsCard.tsx - COMPLETE UPDATED
 import React from 'react'
-import { Image, ImageSourcePropType, Pressable, StyleSheet, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 import TextComp from '../TextComp';
 import IconHolder from '../IconHolder';
 
 interface TheProps {
-  theImage: ImageSourcePropType;
+  theImage: string; // Changed from ImageSourcePropType to string
   name: string;
   descr: string;
   time: number;
@@ -22,7 +23,7 @@ const PopulerMealsCard: React.FC<TheProps> = ({
 }) => {
   return (
     <View style={styles.card}>
-      <Image style={styles.imgStyle} source={theImage} resizeMode="cover" />
+      <Image style={styles.imgStyle} source={{ uri: theImage }} resizeMode="cover" />
       <View style={styles.bottomSect}>
         <View style={styles.textContainer}>
           <TextComp style={styles.mealName}>{name}</TextComp>

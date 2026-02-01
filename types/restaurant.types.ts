@@ -6,10 +6,10 @@ export interface Meal {
   name: string;
   description: string;
   price: number;
-  image: ImageSourcePropType; // Changed from string to ImageSourcePropType
+  image: string;
   categoryId: string;
   categoryName?: string;
-  preparationTime?: number; // in minutes
+  preparationTime?: number;
   isPopular?: boolean;
   isDiscounted?: boolean;
   discountPercentage?: number;
@@ -22,7 +22,7 @@ export interface Meal {
 export interface Category {
   id: string;
   name: string;
-  icon: ImageSourcePropType; // Changed from string to ImageSourcePropType
+  icon: string;
   description?: string;
   mealCount?: number;
 }
@@ -33,7 +33,7 @@ export interface CartItem {
   mealName: string;
   mealDescription: string;
   mealPrice: number;
-  mealImage: ImageSourcePropType; // Changed from string to ImageSourcePropType
+  mealImage: string;
   quantity: number;
   specialInstructions?: string;
   addedAt: string;
@@ -117,3 +117,8 @@ export interface AppState {
   orders: OrdersState;
   userProfile: UserProfileState;
 }
+
+// Helper function to convert URL string to ImageSourcePropType
+export const stringToImageSource = (url: string): ImageSourcePropType => {
+  return { uri: url };
+};

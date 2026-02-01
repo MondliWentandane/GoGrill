@@ -1,11 +1,12 @@
+// components/CategoriesComp.tsx - COMPLETE UPDATED
 import React from 'react'
-import { ImageSourcePropType, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import IconHolder from './IconHolder';
 import TextComp from './TextComp';
 
 interface TheProps {
     catName: string;
-    iconURL: ImageSourcePropType;
+    iconURL: string; // Changed from ImageSourcePropType to string
     isSelected?: boolean;
     onPress?: () => void;
 }
@@ -14,7 +15,7 @@ const CategoriesComp: React.FC<TheProps> = ({catName, iconURL, isSelected = fals
   return (
     <Pressable onPress={onPress} style={styles.sectDiv}>
         <IconHolder 
-          source={iconURL} 
+          source={{ uri: iconURL }} // Convert string to ImageSourcePropType
           style={isSelected ? [styles.icon, styles.selectedIcon] : styles.icon}
         />
         <TextComp style={isSelected ? [styles.catName, styles.selectedText] : styles.catName}>

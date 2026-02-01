@@ -1,5 +1,6 @@
+// components/dataComponents/CartMealCard.tsx - COMPLETE UPDATED VERSION
 import React from 'react'
-import { Image, ImageSourcePropType, Pressable, StyleSheet, View, ViewStyle } from 'react-native';
+import { Image, Pressable, StyleSheet, View, ViewStyle } from 'react-native';
 import TextComp from '../TextComp';
 import IconHolder from '../IconHolder';
 
@@ -7,7 +8,7 @@ interface TheProps {
     name: string;
     description: string;
     price: number;
-    image: ImageSourcePropType;
+    image: string; // Changed from ImageSourcePropType to string
     style?: ViewStyle | ViewStyle[];
     itemId: string;
     quantity: number;
@@ -19,7 +20,7 @@ interface TheProps {
 const CartMealCard: React.FC<TheProps> = ({name, description, price, image, style, itemId, quantity, onQuantityIncrease, onQuantityDecrease, onRemove}) => {
   return (
     <View style={[styles.itemCard, style]}>
-        <Image source={image} style={styles.imgStyle}/>
+        <Image source={{ uri: image }} style={styles.imgStyle}/> {/* Changed */}
         <View style={{paddingLeft:"1%", justifyContent:"space-between",width:"58%"}}>
             <View>
                 <TextComp style={{lineHeight:17}}>{name}</TextComp>

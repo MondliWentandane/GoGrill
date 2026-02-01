@@ -1,3 +1,4 @@
+// store/slices/cartSlice.ts - COMPLETE UPDATED VERSION
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { CartState, CartItem, Meal } from '@/types/restaurant.types';
 
@@ -112,7 +113,7 @@ const cartSlice = createSlice({
             mealName: meal.name,
             mealDescription: meal.description,
             mealPrice: meal.price,
-            mealImage: meal.image,
+            mealImage: meal.image, // This is a string URL
             quantity: 1,
             addedAt: new Date().toISOString(),
           };

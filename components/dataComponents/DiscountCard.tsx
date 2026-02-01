@@ -1,5 +1,6 @@
+// components/dataComponents/DiscountCard.tsx - COMPLETE UPDATED
 import React from 'react'
-import { Image, ImageSourcePropType, Pressable, StyleSheet, View, ViewStyle } from 'react-native'
+import { Image, Pressable, StyleSheet, View, ViewStyle } from 'react-native'
 import TextComp from '../TextComp';
 import IconHolder from '../IconHolder';
 
@@ -7,7 +8,7 @@ interface TheProps {
   mealName: string;
   mealDescr: string;
   price: number;
-  image: ImageSourcePropType;
+  image: string; // Changed from ImageSourcePropType to string
   styleView?: ViewStyle | ViewStyle[];
   onAddToCart?: () => void;
 }
@@ -42,7 +43,7 @@ const DiscountCard: React.FC<TheProps> = ({
         </View>
       </View>
       <View style={styles.cardRight}>
-        <Image source={image} style={styles.mealImage} resizeMode="cover" />
+        <Image source={{ uri: image }} style={styles.mealImage} resizeMode="cover" />
       </View>
     </View>
   )
